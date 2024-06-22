@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let remainingInSec;
+	export let remainingInSec: number;
 
 	$: hours = Math.floor(remainingInSec / 3600);
 	$: minutes = Math.floor((remainingInSec % 3600) / 60);
@@ -8,9 +8,9 @@
 	function transformToDisplay(number: number): string {
 		if (number < 10) {
 			return `0${number}`;
-		} else {
-			return `${number}`;
 		}
+
+		return `${number}`;
 	}
 </script>
 

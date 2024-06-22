@@ -7,9 +7,7 @@
 	let currentTimeWindows = 0;
 
 	let remaining = timeWindowsMinutes[currentTimeWindows];
-	let timer;
-
-	timer = setInterval(() => {
+	const timer = setInterval(() => {
 		if (remaining - 1 < 0) {
 			currentTimeWindows = (currentTimeWindows + 1) % timeWindowsMinutes.length;
 			remaining = timeWindowsMinutes[currentTimeWindows];
