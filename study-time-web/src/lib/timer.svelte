@@ -1,13 +1,9 @@
 <script lang="ts">
-	let timeInSeconds = 50 * 60;
+	export let remainingInSec;
 
-	setInterval(() => {
-		timeInSeconds -= 1;
-	}, 1000);
-
-	$: hours = Math.floor(timeInSeconds / 3600);
-	$: minutes = Math.floor((timeInSeconds % 3600) / 60);
-	$: seconds = timeInSeconds % 60;
+	$: hours = Math.floor(remainingInSec / 3600);
+	$: minutes = Math.floor((remainingInSec % 3600) / 60);
+	$: seconds = remainingInSec % 60;
 
 	function transformToDisplay(number: number): string {
 		if (number < 10) {
@@ -18,9 +14,24 @@
 	}
 </script>
 
-<span class="font-bold text-7xl text-white">
-	{#if !!hours && hours > 0}<span>{transformToDisplay(hours)}</span><span>:</span>{/if}
-	<span>{transformToDisplay(minutes)}</span>
-	<span>:</span>
-	<span>{transformToDisplay(seconds)}</span>
-</span>
+<div class="w-full flex flex-col gap-2 justify-center text-center font-bold text-7xl text-white">
+	{#key hours}
+		{#if !!hours && hours > 0}
+			<div class="timer-value">{transformToDisplay(hours)}</div>
+		{/if}
+	{/key}
+	{#key minutes}
+		<div class="timer-value">{transformToDisplay(minutes)}</div>
+	{/key}
+	{#key seconds}
+		<div class="timer-value">
+			{transformToDisplay(seconds)}
+		</div>
+	{/key}
+</div>
+
+<style>
+	.timer-value {
+		text-shadow: 2px 2px 2px theme('colors.red.500');
+	}
+</style>
