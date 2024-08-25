@@ -14,7 +14,7 @@
 	}
 </script>
 
-<div class="w-full flex flex-col gap-2 justify-center text-center font-bold text-7xl text-white">
+<div class="w-full flex flex-col gap-3 justify-center text-center font-bold text-7xl text-white">
 	{#key hours}
 		{#if !!hours && hours > 0}
 			<div class="timer-value">{transformToDisplay(hours)}</div>
