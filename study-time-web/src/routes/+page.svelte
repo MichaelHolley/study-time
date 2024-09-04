@@ -52,9 +52,9 @@
 
 <svelte:head>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Playwrite+ES:wght@100..400&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap"
 		rel="stylesheet"
 	/>
 </svelte:head>

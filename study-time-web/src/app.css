@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 * {
-	font-family: 'Playwrite ES';
+	font-family: 'Reddit Mono', monospace;
 }
