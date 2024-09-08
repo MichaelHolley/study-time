@@ -1,10 +1,12 @@
 <script lang="ts">
 	import Progressbar from '$lib/progressbar.svelte';
 	import Timer from '$lib/timer.svelte';
+	import Timerpresets from '$lib/timerpresets.svelte';
 	import { onDestroy } from 'svelte';
 
-	const timeWindowsMinutes = [50 * 60, 10 * 60];
+	let timeWindowsMinutes = [2 * 60, 1 * 60];
 	let currentTimeWindows = 0;
+	let optionsVisible = true;
 
 	let remaining = timeWindowsMinutes[currentTimeWindows];
 	const timer = setInterval(() => {
@@ -19,20 +21,40 @@
 	onDestroy(() => {
 		clearInterval(timer);
 	});
+
+	const setNewTimer = (timers: number[]) => {
+		timeWindowsMinutes = timers;
+		currentTimeWindows = 0;
+		remaining = timeWindowsMinutes[currentTimeWindows];
+	};
+
+	const toggleOptions = () => {
+		optionsVisible = !optionsVisible;
+	};
 </script>
 
-<div class="flex flex-col items-center justify-center h-screen bg-red-400">
-	<div class="flex flex-col items-center justify-center gap-3 w-2/5 md:w-1/5">
-		<Timer remainingInSec={remaining} />
-		<Progressbar progress={remaining / timeWindowsMinutes[currentTimeWindows]} />
+<div class="h-screen bg-red-400 flex flex-col">
+	<div
+		class="absolute left-0 right-0 text-white p-6 transform transition-transform duration-500"
+		class:translate-y-0={optionsVisible}
+		class:-translate-y-full={!optionsVisible}
+	>
+		<Timerpresets on:preset-selected={(e) => setNewTimer(e.detail)} />
+	</div>
+
+	<div class="flex-1 flex items-center justify-center">
+		<div class="flex flex-col items-center justify-center gap-3 w-2/5 md:w-1/5">
+			<Timer remainingInSec={remaining} />
+			<Progressbar progress={remaining / timeWindowsMinutes[currentTimeWindows]} />
+		</div>
 	</div>
 </div>
 
 <svelte:head>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
-		href="https://fonts.googleapis.com/css2?family=Playwrite+ES:wght@100..400&display=swap"
+		href="https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap"
 		rel="stylesheet"
 	/>
 </svelte:head>
