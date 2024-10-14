@@ -4,6 +4,12 @@
 	$: hours = Math.floor(remainingInSec / 3600);
 	$: minutes = Math.floor((remainingInSec % 3600) / 60);
 	$: seconds = remainingInSec % 60;
+	$: timeDisplay =
+		transformToDisplay(hours) +
+		':' +
+		transformToDisplay(minutes) +
+		':' +
+		transformToDisplay(seconds);
 
 	function transformToDisplay(number: number): string {
 		if (number < 10) {
@@ -29,6 +35,10 @@
 		</div>
 	{/key}
 </div>
+
+<svelte:head>
+	<title>Study Time ⏲️ {timeDisplay}</title>
+</svelte:head>
 
 <style>
 	.timer-value {
