@@ -1,23 +1,18 @@
 <script lang="ts">
+	import {
+		getRemainingHours,
+		getRemainingMinutes,
+		getRemainingSeconds,
+		toCompactDisplayFormat,
+		transformToDisplay
+	} from './utils/time-util';
+
 	export let remainingInSec: number;
 
-	$: hours = Math.floor(remainingInSec / 3600);
-	$: minutes = Math.floor((remainingInSec % 3600) / 60);
-	$: seconds = remainingInSec % 60;
-	$: timeDisplay =
-		transformToDisplay(hours) +
-		':' +
-		transformToDisplay(minutes) +
-		':' +
-		transformToDisplay(seconds);
-
-	function transformToDisplay(number: number): string {
-		if (number < 10) {
-			return `0${number}`;
-		}
-
-		return `${number}`;
-	}
+	$: hours = getRemainingHours(remainingInSec);
+	$: minutes = getRemainingMinutes(remainingInSec);
+	$: seconds = getRemainingSeconds(remainingInSec);
+	$: timeDisplay = toCompactDisplayFormat(hours, minutes, seconds);
 </script>
 
 <div class="w-full flex flex-col gap-3 justify-center text-center font-bold text-7xl text-white">
