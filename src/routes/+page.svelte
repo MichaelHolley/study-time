@@ -12,10 +12,15 @@
 
 	let remaining = timeWindowsMinutes[currentTimeWindows];
 	const timer = setInterval(() => {
-		if (remaining == 0) {
-			audio.play();
+		if (remaining - 1 < 0) {
+			currentTimeWindows = (currentTimeWindows + 1) % timeWindowsMinutes.length;
+			remaining = timeWindowsMinutes[currentTimeWindows];
+			if (audio?.readyState >= 2) {
+				audio.play().catch(error => console.error('Error playing audio:', error));
+			}
+		} else {
+			remaining -= 1;
 		}
-
 		if (remaining - 1 < 0) {
 			currentTimeWindows = (currentTimeWindows + 1) % timeWindowsMinutes.length;
 			remaining = timeWindowsMinutes[currentTimeWindows];
