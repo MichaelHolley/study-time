@@ -12,14 +12,15 @@
 <style>
 	.progress-bar {
 		animation-name: progressAnimation;
+		animation-timing-function: linear;
 	}
 
 	@keyframes progressAnimation {
-		0% {
-			width: 0%;
+		from {
+			width: 0px;
 		}
 
-		100% {
+		to {
 			width: 100%;
 		}
 	}

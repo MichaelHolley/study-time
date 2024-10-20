@@ -4,7 +4,7 @@
 	import Timerpresets from '$lib/timerpresets.svelte';
 	import { onDestroy } from 'svelte';
 
-	let timeWindowsMinutes = [2 * 60, 1 * 60];
+	let timeWindowsMinutes = [25 * 60, 5 * 60];
 	let currentTimeWindows = 0;
 	let optionsVisible = true;
 
