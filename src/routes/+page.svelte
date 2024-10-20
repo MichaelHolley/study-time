@@ -8,8 +8,14 @@
 	let currentTimeWindows = 0;
 	let optionsVisible = true;
 
+	let audio: HTMLAudioElement;
+
 	let remaining = timeWindowsMinutes[currentTimeWindows];
 	const timer = setInterval(() => {
+		if (remaining == 0) {
+			audio.play();
+		}
+
 		if (remaining - 1 < 0) {
 			currentTimeWindows = (currentTimeWindows + 1) % timeWindowsMinutes.length;
 			remaining = timeWindowsMinutes[currentTimeWindows];
@@ -48,6 +54,8 @@
 			<Progressbar progress={remaining / timeWindowsMinutes[currentTimeWindows]} />
 		</div>
 	</div>
+
+	<audio id="audio-player" hidden bind:this={audio} src="sound.ogg" />
 </div>
 
 <svelte:head>
