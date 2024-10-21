@@ -2,9 +2,10 @@
 	import Progressbar from '$lib/progressbar.svelte';
 	import Timer from '$lib/timer.svelte';
 	import Timerpresets from '$lib/timerpresets.svelte';
+	import { floorTimeValues } from '$lib/utils/time-util';
 	import { onDestroy } from 'svelte';
 
-	let timeWindowsMinutes = [25 * 60, 5 * 60];
+	let timeWindowsMinutes = floorTimeValues([25 * 60, 5 * 60]);
 	let currentTimeWindows = 0;
 	let optionsVisible = true;
 
@@ -23,7 +24,7 @@
 	});
 
 	const setNewTimer = (timers: number[]) => {
-		timeWindowsMinutes = timers;
+		timeWindowsMinutes = floorTimeValues(timers);
 		currentTimeWindows = 0;
 		remaining = timeWindowsMinutes[currentTimeWindows];
 	};
