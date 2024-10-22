@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let totalDuration: number | undefined;
+	export let totalDuration: number;
 	export let remaining: number;
 
 	let progressBar: HTMLDivElement;
