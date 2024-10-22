@@ -24,3 +24,7 @@ export const toCompactDisplayFormat = (hours: number, minutes: number, seconds: 
 
 	return `${transformToDisplay(minutes)}:${transformToDisplay(seconds)}`;
 };
+
+export const floorTimeValues = (values: number[]) => {
+	return values.map((value) => Math.floor(value));
+};
