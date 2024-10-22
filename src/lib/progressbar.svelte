@@ -1,23 +1,28 @@
 <script lang="ts">
-	export let totalDuration;
+	export let totalDuration: number | undefined;
+	export let remaining: number;
 
 	let progressBar: HTMLDivElement;
 
 	$: {
-		console.log(totalDuration);
+		if (remaining === 0 && progressBar) {
+			progressBar.classList.remove('progress-bar');
+			progressBar.style.animationDuration = `0s`;
+		}
+
+		if (remaining > 0 && progressBar && !progressBar.classList.contains('progress-bar')) {
+			progressBar.classList.add('progress-bar');
+			progressBar.style.animationDuration = `${totalDuration}s`;
+		}
 	}
 </script>
 
 <div class="rounded-full bg-red-500 h-2 w-full">
-	<div
-		bind:this={progressBar}
-		class="rounded-full bg-gray-200 h-2 progress-bar"
-		style="animation-duration: {totalDuration}s;"
-	></div>
+	<div bind:this={progressBar} class="rounded-full bg-gray-200 h-2"></div>
 </div>
 
 <style>
-	.progress-bar {
+	:global(.progress-bar) {
 		animation-name: progressAnimation;
 		animation-timing-function: linear;
 	}

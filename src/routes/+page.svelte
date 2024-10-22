@@ -46,7 +46,7 @@
 	<div class="flex-1 flex items-center justify-center">
 		<div class="flex flex-col items-center justify-center gap-3 w-2/5 md:w-1/5">
 			<Timer remainingInSec={remaining} />
-			<Progressbar totalDuration={timeWindowsMinutes[currentTimeWindows]} />
+			<Progressbar totalDuration={timeWindowsMinutes[currentTimeWindows]} {remaining} />
 		</div>
 	</div>
 </div>
